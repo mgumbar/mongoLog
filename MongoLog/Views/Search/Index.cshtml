@@ -1,4 +1,4 @@
-﻿@model List<MongoLog.Models.Log>
+﻿@model List<MongoDB.Bson.BsonDocument>
 @{
     ViewBag.Title = "Index";
 }
@@ -9,26 +9,32 @@
     @using (Html.BeginForm("Index", "Search", FormMethod.Get))
     {
     <p>
-        Title: @Html.TextBox("SearchString")
-        <input type="submit" value="Filter" />
-    </p>
+        <div class="form-group">
+            @Html.Label("host", new { @class = "col-md-2 control-label" }) @Html.TextBox("host", null, new { @class = "form-control" })
+            @Html.Label("date", new { @class = "col-md-2 control-label" }) @Html.TextBox("date", null, new { @class = "form-control" })
+            @Html.Label("time", new { @class = "col-md-2 control-label" }) @Html.TextBox("time", null, new { @class = "form-control" })
+            @Html.Label("data", new { @class = "col-md-2 control-label" }) @Html.TextBox("data", null, new { @class = "form-control" })
+            @Html.Label("log name", new { @class = "col-md-2 control-label" }) @Html.TextBox("logName", null, new { @class = "form-control" })
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+</p>
     }
     </p>
 </p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
 
-Number of item: @Model.Count().ToString();
+
 <br />
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @item.Name;
-            @item.host;
-        </td>
-    </tr>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Number of item: @Model.Count().ToString();
+         </li>
+            @foreach (var item in Model)
+            {
+<li class="list-group-item d-flex justify-content-between align-items-center">
+            @item.GetElement("logname").Value.ToString(); |
+            @item.GetElement("data").Value.ToString();
+            <span class="badge badge-primary badge-pill">@item.GetElement("line").Value.ToString() | @item.GetElement("date").Value.ToString() @item.GetElement("time").Value.ToString();</span>
+        </li>
 }
+</ul>
 
-</table>

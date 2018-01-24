@@ -5,15 +5,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MongoLog.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MongoLog.Controllers
 {
     public class SearchController : Controller
     {
         // GET: Search
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string host, string time, string date, string data, string logName)
         {
-            var logList = LogService.Instance.GetLogs(searchString, "");
+            var logList = LogService.Instance.GetLogsAsync(host, time, date, data, logName);
             return View(logList);
         }
 
