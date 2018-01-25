@@ -74,7 +74,7 @@ namespace MongoLog.Services
                          & builder.Regex("logname", new BsonRegularExpression(".*" + logName + ".*"));
                          //& builder.Eq("logname", logName);
             var sort = Builders<BsonDocument>.Sort.Ascending("line");
-            var result = collection.Find(filter).Limit(5000).Sort(sort).ToList();
+            var result = collection.Find(filter).Limit(500).Sort(sort).ToList();
             return result;
         }
     }
