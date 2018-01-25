@@ -1,53 +1,62 @@
 ﻿@model List<MongoDB.Bson.BsonDocument>
-@{
-    ViewBag.Title = "Index";
-}
+@{ViewBag.Title = "Search";}
+<div class="col-xs-12 col-sm-9 content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a> Search: @Model.Count().ToString() Found(s)</h3>
+        </div>
+        <div class="panel-body">
+            <div class="content-row">
+                <div class="row">
+                    @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form" }))
+                    {
+                        <div class="col-md-2">
+                            @Html.TextBox("host", null, new { @class = "form-control", @id = "host", @placeholder = "Host" })
+                        </div>
 
-<h2>Search</h2>
+                        <div class="col-md-2">
+                            @Html.TextBox("date", null, new { @class = "form-control", @id = "date", @placeholder = "Date" })
+                        </div>
 
-<p>
-    @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form" }))
-    {
-    <p>
-        <div class="form-group">
-            @Html.Label("Host", new { @class = "col-md-2 control-label", @for ="host" }) @Html.TextBox("host", null, new { @class = "form-control", @id = "host" })
-        </div>
-        <div class="form-group">
-            @Html.Label("Date", new { @class = "col-md-2 control-label", @for = "dqte" }) @Html.TextBox("date", null, new { @class = "form-control", @id = "date" })
-        </div>
-        <div class="form-group">
-            @Html.Label("Time", new { @class = "col-md-2 control-label", @for = "time" }) @Html.TextBox("time", null, new { @class = "form-control", @id = "time" })
-        </div>
-        <div class="form-group">
-            @Html.Label("Data", new { @class = "col-md-2 control-label", @for = "data" }) @Html.TextBox("data", null, new { @class = "form-control", @id = "data" })
-        </div>
-        <div class="form-group">
-            @Html.Label("Log name", new { @class = "col-md-2 control-label", @for = "logname" }) @Html.TextBox("logName", null, new { @class = "form-control", @id = "logname" })
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-</p>
-    }
-    </p>
-</p>
+                        <div class="col-md-2">
+                            @Html.TextBox("time", null, new { @class = "form-control", @id = "time", @placeholder = "Time" })
+                        </div>
 
+                        <div class="col-md-2">
+                            @Html.TextBox("data", null, new { @class = "form-control", @id = "data", @placeholder = "Data" })
+                        </div>
 
-<br />
-<div class="bs-example" data-example-id="contextual-table"> 
-    <h3> Found: @Model.Count().ToString() </h3>
-    <table class="table"> 
-        <thead> <tr> <th>#</th> <th>File</th> <th>Time</th> <th>Line</th> </tr> </thead> 
-        <tbody>
-            @* .active, .success, .info, .warning, .danger *@
-            @foreach (var item in Model)
+                        <div class="col-md-2">
+                            @Html.TextBox("logName", null, new { @class = "form-control", @id = "logname", @placeholder = "File Name" })
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    }
+                </div>
+
+                <div class="row">
+
+                    <div class="bs-example" data-example-id="contextual-table">
+                        <table class="table">
+                            <thead> <tr> <th>#</th> <th>File</th> <th>Time</th> <th>Line</th> </tr> </thead>
+                            <tbody>
+                                @* .active, .success, .info, .warning, .danger *@
+                                @foreach (var item in Model)
             {
-                <tr class="@item.GetElement("status").Value.ToString()"> 
-                    <th scope="row">@item.GetElement("line").Value.ToString()</th> 
-                    <td>@item.GetElement("logname").Value.ToString()</td> 
-                    <td>@item.GetElement("date").Value.ToString() @item.GetElement("time").Value.ToString()</td> 
-                    <td>@item.GetElement("data").Value.ToString()</td> 
-                </tr> 
-            }
-        </tbody> 
-    </table> 
-</div>
-
+                                    <tr class="@item.GetElement("status").Value.ToString()">
+                                        <td scope="row">@item.GetElement("line").Value.ToString()</td>
+                                        <td>@item.GetElement("logname").Value.ToString()</td>
+                                        <td>@item.GetElement("date").Value.ToString() @item.GetElement("time").Value.ToString()</td>
+                                        <td>@item.GetElement("data").Value.ToString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- panel body -->
+    </div><!-- panel-default -->
+</div><!-- panel content-9 -->
