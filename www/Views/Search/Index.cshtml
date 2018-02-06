@@ -1,0 +1,68 @@
+﻿@model List<MongoLog.Models.Log>
+@{ViewBag.Title = "Search";}
+<div class="col-xs-12 col-sm-9 content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a> Search: @Model.Count().ToString() Found(s)</h3>
+        </div>
+        <div class="panel-body">
+            <div class="content-row">
+                <div class="row">
+                    @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form" }))
+                    {
+                        <div class="col-md-2">
+                            @Html.TextBox("host", null, new { @class = "form-control", @id = "host", @placeholder = "Host" })
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.TextBox("date", null, new { @class = "form-control", @id = "date", @placeholder = "Date" })
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.TextBox("time", null, new { @class = "form-control", @id = "time", @placeholder = "Time" })
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.TextBox("data", null, new { @class = "form-control", @id = "data", @placeholder = "Data" })
+                        </div>
+
+                        <div class="col-md-2">
+                            @Html.TextBox("logName", null, new { @class = "form-control", @id = "logname", @placeholder = "File Name" })
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    }
+                </div>
+
+                <div class="row">
+
+                    <div class="bs-example" data-example-id="contextual-table">
+                        <table class="table">
+                            <thead> <tr> <th>#</th> <th>File</th> <th>Time</th> <th>Line</th> </tr> </thead>
+                            <tbody>
+                                @*<tr class="@item.GetElement("status").Value.ToString()">
+                                    <td scope="row">@item.GetElement("line").Value.ToString()</td>
+                                    <td>@item.GetElement("logname").Value.ToString()</td>
+                                    <td>@item.GetElement("date").Value.ToString() @item.GetElement("time").Value.ToString()</td>
+                                    <td>@item.GetElement("data").Value.ToString()</td>
+                                </tr>*@
+                                @* .active, .success, .info, .warning, .danger *@
+                                @foreach (var item in Model)
+    {
+                            <tr class="@item.status">
+                                <td scope="row">@item.line</td>
+                                <td>@item.logname</td>
+                                <td>@item.date @item.time</td>
+                                <td>@item.data</td>
+                            </tr>
+}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- panel body -->
+    </div><!-- panel-default -->
+</div><!-- panel content-9 -->
