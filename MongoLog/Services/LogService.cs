@@ -71,8 +71,27 @@ namespace MongoLog.Services
                          & builder.Regex("time", new BsonRegularExpression(".*" + time + ".*"))
                          & builder.Regex("date", new BsonRegularExpression(".*" + date + ".*"))
                          & builder.Regex("data", new BsonRegularExpression(".*" + data + ".*"))
-                         & builder.Regex("logname", new BsonRegularExpression(".*" + logName + ".*"));
+                         & builder.Eq("logname", new BsonRegularExpression(".*" + logName + ".*"));
                          //& builder.Eq("logname", logName);
+            var sort = Builders<BsonDocument>.Sort.Ascending("line");
+            var result = collection.Find(filter).Limit(500).Sort(sort).ToList();
+            return result;
+        }
+
+        public List<BsonDocument> GetLogsJson(string host, string time, string date, string data, string logName)
+        {
+            var client = new MongoClient(this.connectionString);
+            var database = client.GetDatabase("log");
+            var collection = database.GetCollection<BsonDocument>("coreact");
+
+            var filter = @"{$and : [" +
+                            "{ $and : [ {name: 'coreact'} ] }," +
+                            "{ $and : [ {time: { $regex: '/.*" + time + ".*/', $options: '-i' }} ] }," +
+                            "{ $and: [ { date: { $regex: '/.*" + date + ".*/', $options: '-i' } } ] }," +
+                            "{ $and: [ { data: { $regex: '/.*" + data + ".*/', $options: '-i' } } ] }," +
+                            "{ $and: [ { logname: '" + logName + "' } ] }]}"; //", "coreact", time, date, data, logName
+                       
+            //& builder.Eq("logname", logName);
             var sort = Builders<BsonDocument>.Sort.Ascending("line");
             var result = collection.Find(filter).Limit(500).Sort(sort).ToList();
             return result;

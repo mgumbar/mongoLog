@@ -1,13 +1,15 @@
-﻿using MongoDB.Bson;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace MongoLog.Models
 {
     public class Log
     {
+        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; set; }
         public int line { get; set; }
         public string name { get; set; }
