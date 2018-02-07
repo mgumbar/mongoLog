@@ -8,6 +8,7 @@ using System.Web;
 
 namespace MongoLog.Models
 {
+    [BsonIgnoreExtraElements]
     public class Step
     {
         [BsonElement("name")]
@@ -29,6 +30,10 @@ namespace MongoLog.Models
         //[BsonRepresentation(BsonType.String)]
         public List<StepEvent> Events { get; set; }
 
+        public Step()
+        {
+            this.Status = "primary";
+        }
         public Step(string name, string label, string category, string subCategory)
         {
             this.Name = name;

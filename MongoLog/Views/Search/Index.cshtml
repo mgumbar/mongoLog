@@ -9,31 +9,31 @@
             <div class="content-row">
                 <div class="row">
                     @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form" }))
-                    {
-                        <div class="col-md-2">
-                            @Html.TextBox("host", null, new { @class = "form-control", @id = "host", @placeholder = "Host" })
-                        </div>
+                {
+                <div class="col-md-2">
+                    @Html.TextBox("host", null, new { @class = "form-control", @id = "host", @placeholder = "Host" })
+                </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("date", null, new { @class = "form-control", @id = "date", @placeholder = "Date" })
-                        </div>
+                <div class="col-md-2">
+                    @Html.TextBox("startDate", null, new { @class = "form-control", @id = "startDate", @placeholder = "Star date" })
+                </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("time", null, new { @class = "form-control", @id = "time", @placeholder = "Time" })
-                        </div>
+                <div class="col-md-2">
+                    @Html.TextBox("endDate", null, new { @class = "form-control", @id = "endDate", @placeholder = "End date" })
+                </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("data", null, new { @class = "form-control", @id = "data", @placeholder = "Data" })
-                        </div>
+                <div class="col-md-2">
+                    @Html.TextBox("data", null, new { @class = "form-control", @id = "data", @placeholder = "Data" })
+                </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("logName", null, new { @class = "form-control", @id = "logname", @placeholder = "File Name" })
-                        </div>
+                <div class="col-md-2">
+                    @Html.TextBox("logName", null, new { @class = "form-control", @id = "logname", @placeholder = "File Name" })
+                </div>
 
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </div>
-                    }
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+                }
                 </div>
 
                 <div class="row">

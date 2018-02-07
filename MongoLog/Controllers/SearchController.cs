@@ -15,16 +15,20 @@ namespace MongoLog.Controllers
     public class SearchController : Controller
     {
         // GET: Search
-        public async Task<ActionResult> Index(string host = "", string time = "", string date = "", string data = "", string logName = "")
+        public async Task<ActionResult> Index(string host = "", string time = "", string startDate = "", string endDate = "", string data = "", string logName = "")
         {
             //var logList = LogService.Instance.GetLogsAsync(host, time, date, data, logName);
             var logContext = new LogContext();
-
+            if (String.IsNullOrEmpty(startDate))
+                startDate = DateTime.Now.AddDays(-365).ToString();
+            if (String.IsNullOrEmpty(endDate))
+                endDate = DateTime.Now.ToString();
             Expression<Func<Log, bool>> filter = x => true;
 
             filter = x => (String.IsNullOrEmpty(host) || x.host.Equals(host))
                           && (String.IsNullOrEmpty(time) || x.time.Contains(time))
-                          && (String.IsNullOrEmpty(date) || x.date.Contains(date))
+                          && (String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate))
+                          && (String.IsNullOrEmpty(endDate) || x.DateTime <= DateTime.Parse(endDate))
                           && (String.IsNullOrEmpty(data) || x.data.Contains(data))
                           && (String.IsNullOrEmpty(logName) || x.logname.Equals(logName));
 

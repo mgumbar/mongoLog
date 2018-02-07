@@ -12,6 +12,7 @@ namespace MongoLog.Models
         public const string DATABASE_NAME = "log";
         public const string LOGS_COLLECTION_NAME = "log";
         public const string WORKFLOWS_COLLECTION_NAME = "workflow";
+        public const string STEPS_COLLECTION_NAME = "step_event";
 
         // This is ok... Normally, they would be put into
         // an IoC container.
@@ -38,6 +39,11 @@ namespace MongoLog.Models
         public IMongoCollection<Workflow> Workflows
         {
             get { return _database.GetCollection<Workflow>(WORKFLOWS_COLLECTION_NAME); }
+        }
+
+        public IMongoCollection<StepEvent> StepEvents
+        {
+            get { return _database.GetCollection<StepEvent>(STEPS_COLLECTION_NAME); }
         }
     }
 }

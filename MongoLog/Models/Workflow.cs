@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 
 namespace MongoLog.Models
 {
+    [BsonIgnoreExtraElements]
     public class Workflow
     {
         public ObjectId _id { get; set; }

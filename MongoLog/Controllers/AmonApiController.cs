@@ -42,7 +42,7 @@ namespace MongoLog.Controllers
         //}
 
         [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/amon/postJson/{clientKey}")]
+        [System.Web.Http.Route("api/workflow/{clientKey}")]
         public async Task<string> PostNewWorkflow(string clientKey)
         {
             //var status = AmonService.Instance.Insert(json, "worklow", origin);
@@ -61,12 +61,35 @@ namespace MongoLog.Controllers
             var document = new Workflow
             {
                 ClientKey = clientKey.ToString(),
-                Source = json["workflow"]["sender"]["source"].ToString(),
-                Module = json["workflow"]["sender"]["source"].ToString(),
+                Source = json["workflow"]["sender"]["source"].ToString().ToLower(),
+                Module = json["workflow"]["sender"]["module"].ToString(),
                 Payload = payload,
                 Steps = steps
             };
             await logContext.Workflows.InsertOneAsync(document);
+            //this.GetCollection(collection).InsertOne(document);
+
+            return "";
+        }
+
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/event/{origin}/{clientKey}")]
+        public async Task<string> PostEventGeneric(string origin, string clientKey)
+        {
+            string result = await Request.Content.ReadAsStringAsync();
+            var json = JObject.Parse(result);
+            var logContext = new LogContext();
+            var document = new StepEvent
+            {
+                Message = json["message"].ToString(),
+                CreatedAt = DateTime.Parse(json["created_at"].ToString()),
+                Status = json["payload"]["status"].ToString(),
+                EventType = json["event_type"].ToString(),
+                Source = origin.ToLower(),
+                ClientKey = clientKey
+            };
+            await logContext.StepEvents.InsertOneAsync(document);
             //this.GetCollection(collection).InsertOne(document);
 
             return "";
