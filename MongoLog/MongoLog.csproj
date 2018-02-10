@@ -190,25 +190,86 @@
     <Compile Include="Services\LogService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootflat\bootflat.css" />
+    <Content Include="Content\bootflat\bootflat.min.css" />
+    <Content Include="Content\bootflat\img\ascii-logo.gif" />
+    <Content Include="Content\bootflat\img\bootflat-ui-kit.jpg" />
+    <Content Include="Content\bootflat\img\check_flat\default.png" />
+    <Content Include="Content\bootflat\img\design.png" />
+    <Content Include="Content\bootflat\img\divider.png" />
+    <Content Include="Content\bootflat\img\fast.png" />
+    <Content Include="Content\bootflat\img\feature-bootstrap.png" />
+    <Content Include="Content\bootflat\img\feature-css.png" />
+    <Content Include="Content\bootflat\img\feature-lightweight.png" />
+    <Content Include="Content\bootflat\img\feature-mobile.png" />
+    <Content Include="Content\bootflat\img\footer-logo.png" />
+    <Content Include="Content\bootflat\img\github.png" />
+    <Content Include="Content\bootflat\img\index.png" />
+    <Content Include="Content\bootflat\img\Jumbotron.jpg" />
+    <Content Include="Content\bootflat\img\logo-index.png" />
+    <Content Include="Content\bootflat\img\logo.png" />
+    <Content Include="Content\bootflat\img\photo-1.jpg" />
+    <Content Include="Content\bootflat\img\photo-2.jpg" />
+    <Content Include="Content\bootflat\img\photo-3.jpg" />
+    <Content Include="Content\bootflat\img\photo-4.jpg" />
+    <Content Include="Content\bootflat\img\prototyping.png" />
+    <Content Include="Content\bootflat\img\screensho1.png" />
+    <Content Include="Content\bootflat\img\screenshot2.png" />
+    <Content Include="Content\bootflat\img\share.gif" />
+    <Content Include="Content\bootflat\img\slider1.jpg" />
+    <Content Include="Content\bootflat\img\slider2.jpg" />
+    <Content Include="Content\bootflat\img\slider3.jpg" />
+    <Content Include="Content\bootflat\img\thumbnail-1.jpg" />
+    <Content Include="Content\bootflat\img\thumbnail-2.jpg" />
+    <Content Include="Content\bootflat\img\thumbnail-3.jpg" />
+    <Content Include="Content\bootflat\img\thumbnail-4.jpg" />
+    <Content Include="Content\bootflat\img\together.png" />
+    <Content Include="Content\bootflat\img\wild_flowers.png" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\mongoLog.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\angularicons.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ApplicationInsights.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootflat\img\check_flat\default.psd" />
+    <Content Include="Content\bootflat\bootflat.css.map" />
+    <Content Include="fonts\angularicons.eot" />
+    <Content Include="fonts\angularicons.ttf" />
+    <Content Include="fonts\angularicons.woff" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-1.11.0.intellisense.js" />
+    <Content Include="Scripts\bootflat\icheck.min.js" />
+    <Content Include="Scripts\bootflat\jquery.fs.selecter.min.js" />
+    <Content Include="Scripts\bootflat\jquery.fs.stepper.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.11.0.js" />
+    <Content Include="Scripts\jquery-1.11.0.min.js" />
+    <Content Include="Scripts\jquery-1.11.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.highlight-5.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mongoLog.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\site.min.js" />
@@ -235,17 +296,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

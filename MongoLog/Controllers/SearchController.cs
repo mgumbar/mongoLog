@@ -15,7 +15,7 @@ namespace MongoLog.Controllers
     public class SearchController : Controller
     {
         // GET: Search
-        public async Task<ActionResult> Index(string host = "", string time = "", string startDate = "", string endDate = "", string data = "", string logName = "")
+        public async Task<ActionResult> Index(string host = "", string startDate = "", string endDate = "", string data = "", string logName = "")
         {
             //var logList = LogService.Instance.GetLogsAsync(host, time, date, data, logName);
             var logContext = new LogContext();
@@ -25,19 +25,17 @@ namespace MongoLog.Controllers
                 endDate = DateTime.Now.ToString();
             Expression<Func<Log, bool>> filter = x => true;
 
-            filter = x => (String.IsNullOrEmpty(host) || x.host.Equals(host))
-                          && (String.IsNullOrEmpty(time) || x.time.Contains(time))
-                          && (String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate))
+            filter = x => ((String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate))
+                          && (String.IsNullOrEmpty(host) || x.host.Equals(host))
                           && (String.IsNullOrEmpty(endDate) || x.DateTime <= DateTime.Parse(endDate))
                           && (String.IsNullOrEmpty(data) || x.data.Contains(data))
-                          && (String.IsNullOrEmpty(logName) || x.logname.Equals(logName));
+                          && (String.IsNullOrEmpty(logName) || x.logname.Equals(logName)));
 
             var logs = await logContext.Logs.Find(filter)
-                .SortByDescending(x => x.date)
-                .Limit(500)
+                .Limit(2000)
                 .ToListAsync();
-
-            return View(logs);
+            var logListed = logs.OrderBy(p => p.DateTime).ToList();
+            return View(logListed);
         }
 
         // GET: Search/Details/5
