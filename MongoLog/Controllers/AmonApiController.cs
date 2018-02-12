@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -104,6 +105,27 @@ namespace MongoLog.Controllers
             var status = EventService.Instance.Insert(json, "event", clientReference, step, origin);
             return "";
         }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/processFile/{applicationName}/{clientReference}")]
+        public async Task<string> ProcessFile(string applicationName, string clientReference)
+        {
+            string result = await Request.Content.ReadAsStringAsync();
+            var json = JObject.Parse(result);
+            WorkerService.Instance.Insert(json, clientReference);
+            var logger = new LoggerService
+            {
+                StartDate = DateTime.Parse(json["startDate"].ToString()),
+                ApplicationName = applicationName,
+                ClientKey = clientReference,
+                FilePath = json["payload"]["filePath"].ToString()
+            };
+
+            HostingEnvironment.QueueBackgroundWorkItem(cancellationToken => new Worker().StartProcessing(logger, cancellationToken));
+
+            return "";
+        }
+
 
         // PUT: api/AmonApi/5
         public void Put(int id, [FromBody]string value)

@@ -13,45 +13,35 @@ using System.Web.Hosting;
 
 namespace MongoLog.Controllers
 {
-    public class SearchController : Controller
+    public class WorkerController : Controller
     {
-        // GET: Search
-        public async Task<ActionResult> Index(string host = "", string startDate = "", string endDate = "", string data = "", string logName = "")
+        // GET: Worker
+        public async Task<ActionResult> Index()
         {
-            //var logList = LogService.Instance.GetLogsAsync(host, time, date, data, logName);
             var logContext = new LogContext();
-            if (String.IsNullOrEmpty(startDate))
-                startDate = DateTime.Now.AddDays(-365).ToString();
-            if (String.IsNullOrEmpty(endDate))
-                endDate = DateTime.Now.ToString();
-            Expression<Func<Log, bool>> filter = x => true;
-
-            filter = x => ((String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate))
-                          && (String.IsNullOrEmpty(host) || x.Host.Equals(host))
-                          && (String.IsNullOrEmpty(endDate) || x.DateTime <= DateTime.Parse(endDate))
-                          && (String.IsNullOrEmpty(data) || x.Data.Contains(data))
-                          && (String.IsNullOrEmpty(logName) || x.Logname.Equals(logName)));
-
-            var logs = await logContext.Logs.Find(filter)
+            Expression<Func<Worker, bool>> filter = x => true;
+            var startDate = DateTime.Now.AddDays(-365).ToString();
+            filter = x => ((String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate)));
+            var workers = await logContext.Workers.Find(filter)
                 .Limit(2000)
                 .ToListAsync();
-            var logListed = logs.OrderBy(p => p.DateTime).ToList();
-            return View(logListed);
+            var workerListed = workers.OrderBy(p => p.DateTime).ToList();
+            return View(workerListed);
         }
 
-        // GET: Search/Details/5
+        // GET: Worker/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Search/Create
+        // GET: Worker/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Search/Create
+        // POST: Worker/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -67,13 +57,13 @@ namespace MongoLog.Controllers
             }
         }
 
-        // GET: Search/Edit/5
+        // GET: Worker/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Search/Edit/5
+        // POST: Worker/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -89,13 +79,13 @@ namespace MongoLog.Controllers
             }
         }
 
-        // GET: Search/Delete/5
+        // GET: Worker/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Search/Delete/5
+        // POST: Worker/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

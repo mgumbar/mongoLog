@@ -65,12 +65,12 @@
                                 @* .active, .success, .info, .warning, .danger *@
                                 @foreach (var item in Model)
                     {
-                        <tr class="@item.status">
-                            <td scope="row">@item.line</td>
-                            <td>@item.logname</td>
+                        <tr class="@item.Status">
+                            <td scope="row">@item.Line</td>
+                            <td>@item.Logname</td>
                             <td>@item.DateTime.ToString()</td>
-                            <td>@item.process.ToString()</td>
-                            <td>@item.data</td>
+                            <td>@item.Process.ToString()</td>
+                            <td>@item.Data</td>
                         </tr>
         }
                             </tbody>
