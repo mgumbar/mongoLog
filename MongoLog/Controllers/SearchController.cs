@@ -16,9 +16,9 @@ namespace MongoLog.Controllers
     public class SearchController : Controller
     {
         // GET: Search
-        public async Task<ActionResult> Index(string host = "", string startDate = "", string endDate = "", string data = "", string logName = "")
+        public async Task<ActionResult> Index(string application = "", string startDate = "", string endDate = "", string data = "", string logName = "")
         {
-            //var logList = LogService.Instance.GetLogsAsync(host, time, date, data, logName);
+            //var logList = LogService.Instance.GetLogsAsync(application, time, date, data, logName);
             var logContext = new LogContext();
             if (String.IsNullOrEmpty(startDate))
                 startDate = DateTime.Now.AddDays(-365).ToString();
@@ -27,8 +27,8 @@ namespace MongoLog.Controllers
             Expression<Func<Log, bool>> filter = x => true;
 
             filter = x => ((String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate))
-                          && (String.IsNullOrEmpty(host) || x.Host.Equals(host))
                           && (String.IsNullOrEmpty(endDate) || x.DateTime <= DateTime.Parse(endDate))
+                          && (String.IsNullOrEmpty(application) || x.ApplicationName.Equals(application))
                           && (String.IsNullOrEmpty(data) || x.Data.Contains(data))
                           && (String.IsNullOrEmpty(logName) || x.Logname.Equals(logName)));
 
