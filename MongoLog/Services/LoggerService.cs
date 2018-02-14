@@ -24,6 +24,7 @@ namespace MongoLog.Services
             }
             else if (FilePath.ToLower().Contains("activemonitoring.log"))
             {
+                StartActiveMonitoringProcessing();
             }
             else if (FilePath.ToLower().Contains("businessrulelibrary.log"))
             {
@@ -56,6 +57,12 @@ namespace MongoLog.Services
             else if (FilePath.ToLower().Contains("workflow.log"))
             {
 
+            }
+            else
+            {
+                WorkerService.Instance.UpdateProgress(ClientKey, 100);
+                WorkerService.Instance.UpdateStatus(ClientKey, "danger");
+                WorkerService.Instance.UpdateException(ClientKey, String.Format("Unable to process file: {0}", FilePath));
             }
         }
 
