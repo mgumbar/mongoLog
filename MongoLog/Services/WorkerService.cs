@@ -74,8 +74,8 @@ namespace MongoLog.Services
                 { "date_time", DateTime.Now },
                 { "payload", json["payload"].ToString() },
                 { "job_name", json["jobName"].ToString() },
-                { "status", "danger" },
-                { "progress", 0 },
+                { "status", "info" },
+                { "progress", 0.0 },
                 { "exception", "" },
                 { "retry", 0 }
             };
@@ -83,10 +83,18 @@ namespace MongoLog.Services
             return "";
         }
 
-        public string UpdateProgress(string clientKey, int progress)
+        public string UpdateProgress(string clientKey, float progress)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("client_key", clientKey);
             var update = Builders<BsonDocument>.Update.Set("progress", progress).CurrentDate("updated_at");
+            var result = this.GetCollection(WORKER_COLLECTION_NAME).UpdateOne(filter, update);
+            return "";
+        }
+
+        public string UpdateStatus(string clientKey, string status)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("client_key", clientKey);
+            var update = Builders<BsonDocument>.Update.Set("status", status).CurrentDate("updated_at");
             var result = this.GetCollection(WORKER_COLLECTION_NAME).UpdateOne(filter, update);
             return "";
         }

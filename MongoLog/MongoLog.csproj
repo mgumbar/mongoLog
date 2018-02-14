@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="Models\Amon.cs" />
     <Compile Include="Models\LogContext.cs" />
+    <Compile Include="Models\WorkerLogger.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Models\StepEvent.cs" />
     <Compile Include="Models\Log.cs" />

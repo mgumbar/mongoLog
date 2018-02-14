@@ -9,55 +9,70 @@
             <div class="content-row">
                 <div class="row">
                     @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form" }))
-                    {
-                        <div class="col-md-2">
-                            @Html.TextBox("host", null, new { @class = "form-control", @id = "host", @placeholder = "Host" })
-                        </div>
+        {
+            <div class="col-md-2">
+                @Html.TextBox("host", null, new { @class = "form-control", @id = "host", @placeholder = "Host" })
+            </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("date", null, new { @class = "form-control", @id = "date", @placeholder = "Date" })
-                        </div>
+            <div class="col-md-2">
+                @Html.TextBox("startDate", null, new { @class = "form-control", @id = "startDate", @placeholder = "Star date" })
+            </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("time", null, new { @class = "form-control", @id = "time", @placeholder = "Time" })
-                        </div>
+            <div class="col-md-2">
+                @Html.TextBox("endDate", null, new { @class = "form-control", @id = "endDate", @placeholder = "End date" })
+            </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("data", null, new { @class = "form-control", @id = "data", @placeholder = "Data" })
-                        </div>
+            <div class="col-md-2">
+                @Html.TextBox("data", null, new { @class = "form-control", @id = "data", @placeholder = "Data" })
+            </div>
 
-                        <div class="col-md-2">
-                            @Html.TextBox("logName", null, new { @class = "form-control", @id = "logname", @placeholder = "File Name" })
-                        </div>
+            <div class="col-md-2">
+                @Html.TextBox("logName", null, new { @class = "form-control", @id = "logname", @placeholder = "File Name" })
+            </div>
 
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </div>
-                    }
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+}
                 </div>
-
+                <div id="highlight-plugin"></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="High light me" id="highlightme1">
+                        <div class="clear"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="High light me" id="highlightme2">
+                        <div class="clear"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="High light me" id="highlightme3">
+                        <div class="clear"></div>
+                    </div>
+                </div>
                 <div class="row">
 
                     <div class="bs-example" data-example-id="contextual-table">
                         <table class="table">
-                            <thead> <tr> <th>#</th> <th>File</th> <th>Time</th> <th>Line</th> </tr> </thead>
+                            <thead> <tr> <th>#</th> <th>File</th> <th>Time</th> <th>Process</th> <th>Line</th> </tr> </thead>
                             <tbody>
                                 @*<tr class="@item.GetElement("status").Value.ToString()">
-                                    <td scope="row">@item.GetElement("line").Value.ToString()</td>
-                                    <td>@item.GetElement("logname").Value.ToString()</td>
-                                    <td>@item.GetElement("date").Value.ToString() @item.GetElement("time").Value.ToString()</td>
-                                    <td>@item.GetElement("data").Value.ToString()</td>
-                                </tr>*@
+                            <td scope="row">@item.GetElement("line").Value.ToString()</td>
+                            <td>@item.GetElement("logname").Value.ToString()</td>
+                            <td>@item.GetElement("date").Value.ToString() @item.GetElement("time").Value.ToString()</td>
+                            <td>@item.GetElement("data").Value.ToString()</td>
+                        </tr>*@
                                 @* .active, .success, .info, .warning, .danger *@
                                 @foreach (var item in Model)
-    {
-                            <tr class="@item.status">
-                                <td scope="row">@item.line</td>
-                                <td>@item.logname</td>
-                                <td>@item.date @item.time</td>
-                                <td>@item.data</td>
-                            </tr>
-}
+                    {
+                        <tr class="@item.Status">
+                            <td scope="row">@item.Line</td>
+                            <td>@item.Logname</td>
+                            <td>@item.DateTime.ToString()</td>
+                            <td>@item.Process.ToString()</td>
+                            <td>@item.Data</td>
+                        </tr>
+        }
                             </tbody>
                         </table>
                     </div>

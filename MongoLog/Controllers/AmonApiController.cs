@@ -118,10 +118,10 @@ namespace MongoLog.Controllers
                 StartDate = DateTime.Parse(json["startDate"].ToString()),
                 ApplicationName = applicationName,
                 ClientKey = clientReference,
-                FilePath = json["payload"]["filePath"].ToString()
+                FilePath = json["payload"]["filePath"].ToString(),
             };
 
-            HostingEnvironment.QueueBackgroundWorkItem(cancellationToken => new Worker().StartProcessing(logger, cancellationToken));
+            HostingEnvironment.QueueBackgroundWorkItem(cancellationToken => new WorkerLogger().StartProcessing(logger, cancellationToken));
 
             return "";
         }

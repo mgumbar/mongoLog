@@ -15,13 +15,15 @@ namespace MongoLog.Controllers
 {
     public class WorkerController : Controller
     {
-        // GET: Worker
-        public async Task<ActionResult> Index()
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("worker/{state}")]
+        public async Task<ActionResult> Index(string state = null)
         {
             var logContext = new LogContext();
             Expression<Func<Worker, bool>> filter = x => true;
             var startDate = DateTime.Now.AddDays(-365).ToString();
-            filter = x => ((String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate)));
+            filter = x => ((String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate))
+                            && (String.IsNullOrEmpty(state) || x.Satus == state));
             var workers = await logContext.Workers.Find(filter)
                 .Limit(2000)
                 .ToListAsync();

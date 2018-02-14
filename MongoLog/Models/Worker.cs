@@ -19,6 +19,7 @@ namespace MongoLog.Models
         [BsonElement("date_time")]
         [JsonProperty("date_time")]
         public DateTime DateTime { get; set; }
+        [BsonElement("updated_at")]
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
         [BsonElement("payload")]
@@ -29,30 +30,24 @@ namespace MongoLog.Models
         [BsonElement("job_name")]
         public string JobName { get; set; }
         [BsonElement("progress")]
-        public int Progress { get; set; }
+        public float Progress { get; set; }
         [BsonElement("exception")]
         public string Exception { get; set; }
 
         string filePath = @"c:/test.txt";
 
-        public void StartProcessing(LoggerService logger, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual void StartProcessing(LoggerService logger, CancellationToken cancellationToken = default(CancellationToken))
         {
-            try
-            {
-                logger.StartFlLog();
-            }
-            catch (Exception ex)
-            {
-                ProcessCancellation();
-                string errorMsg = "Error Occured : " + ex.GetType().ToString() + " : " + ex.Message;
-                WorkerService.Instance.UpdateException(logger.ClientKey, errorMsg);
-                //File.AppendAllText(filePath, "Error Occured : " + ex.GetType().ToString() + " : " + ex.Message);
-            }
+            throw new NotImplementedException();
         }
         private void ProcessCancellation()
         {
-            //Thread.Sleep(10000);
-            //File.AppendAllText(filePath, "Process Cancelled");
+            throw new NotImplementedException();
+        }
+
+        public string GetProgress()
+        {
+            return Convert.ToInt32(Progress).ToString();
         }
 
 

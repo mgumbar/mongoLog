@@ -25,7 +25,6 @@ namespace MongoLog.Services
             var collection = database.GetCollection<Log>("log");
             var timeOne = DateTime.Now.ToString();
             var nbLines = File.ReadLines(FilePath).Count();
-            WorkerService.Instance.UpdateException(ClientKey, "nbLines " + nbLines.ToString());
             int counter = 1;
             string line;
 
@@ -37,12 +36,11 @@ namespace MongoLog.Services
             string server;
             string process;
             string logStatus = "";
-
+            float progress = 0;
             while ((line = file.ReadLine()) != null)
             {
                 try
                 {
-                    WorkerService.Instance.UpdateException(ClientKey, "counter " + counter.ToString());
                     dateTime = DateTime.Parse(StartDate.ToString("yyyy-MM-") + line.Substring(4, 12));
                     words = line.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries);
                     server = words[3];
@@ -88,9 +86,16 @@ namespace MongoLog.Services
                     counter++;
 
                 }
-                WorkerService.Instance.UpdateProgress(ClientKey, (counter / nbLines * 100));
+                progress = ((float)counter / (float)nbLines) * 100;
+                WorkerService.Instance.UpdateProgress(ClientKey, progress);
 
                 counter++;
+            }
+            if (progress >= 100)
+            {
+                WorkerService.Instance.UpdateProgress(ClientKey, 100);
+                WorkerService.Instance.UpdateStatus(ClientKey, "success");
+                WorkerService.Instance.UpdateException(ClientKey, "Successfully imported");
             }
             file.Close();
         }
