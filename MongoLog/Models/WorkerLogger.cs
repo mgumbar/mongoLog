@@ -17,7 +17,7 @@ namespace MongoLog.Models
         {
             try
             {
-                logger.StartFlLog();
+                logger.StartFileProcessing();
             }
             catch (Exception ex)
             {
