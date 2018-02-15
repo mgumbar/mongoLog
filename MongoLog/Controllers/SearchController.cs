@@ -19,6 +19,14 @@ namespace MongoLog.Controllers
         public async Task<ActionResult> Index(string application = "", string startDate = "", string endDate = "", string data = "", string logName = "")
         {
             //var logList = LogService.Instance.GetLogsAsync(application, time, date, data, logName);
+            int limit = 2000;
+            if (string.IsNullOrEmpty(application)
+                && string.IsNullOrEmpty(startDate)
+                && string.IsNullOrEmpty(endDate)
+                && string.IsNullOrEmpty(data)
+                && string.IsNullOrEmpty(logName))
+                limit = 50;
+
             var logContext = new LogContext();
             if (String.IsNullOrEmpty(startDate))
                 startDate = DateTime.Now.AddDays(-365).ToString();
@@ -33,7 +41,7 @@ namespace MongoLog.Controllers
                           && (String.IsNullOrEmpty(logName) || x.Logname.Equals(logName)));
 
             var logs = await logContext.Logs.Find(filter)
-                .Limit(2000)
+                .Limit(limit)
                 .ToListAsync();
             var logListed = logs.OrderBy(p => p.DateTime).ToList();
             return View(logListed);

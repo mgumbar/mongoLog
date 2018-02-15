@@ -20,14 +20,15 @@ namespace MongoLog.Controllers
         public async Task<ActionResult> Index(string state = null)
         {
             var logContext = new LogContext();
+            int limit = 2000;
             Expression<Func<Worker, bool>> filter = x => true;
             var startDate = DateTime.Now.AddDays(-365).ToString();
             filter = x => ((String.IsNullOrEmpty(startDate) || x.DateTime >= DateTime.Parse(startDate))
                             && (String.IsNullOrEmpty(state) || x.Satus == state));
             var workers = await logContext.Workers.Find(filter)
-                .Limit(2000)
+                .Limit(limit)
                 .ToListAsync();
-            var workerListed = workers.OrderBy(p => p.DateTime).ToList();
+            var workerListed = workers.OrderByDescending(p => p.Progress).ThenByDescending(p => p.DateTime).ToList();
             return View(workerListed);
         }
 
