@@ -56,17 +56,15 @@
                                         </td>
                                         <td>
                                             @foreach (MongoLog.Models.Step step in item.Steps)
-    {
-                                            
-             
-                                        <span class="label label-@step.Status" style="margin-left:5px">
-                                            @*<a href="/events/@step.Name/@item.ClientKey">*@
-                                            @step.Label
-                                            @*</a>*@
-
-                                        </span>
-                
-}
+                                            {
+                                                    <a href="Search?application=@item.SourceLower()&startDate=@item.UpdatedAtUi(-1)&endDate=@item.UpdatedAtUi(+1)&data=&logName=">
+                                                <span class="label label-@step.Status" style="margin-left:5px">
+                                                    @*<a href="/events/@step.Name/@item.ClientKey">*@
+                                                    @step.Label
+                                                    @*</a>*@
+                                                </span>
+                                                    </a>
+                                            }
                                         </td>
                                     </tr>
                                 }

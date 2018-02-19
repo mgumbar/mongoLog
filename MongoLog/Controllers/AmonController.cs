@@ -19,7 +19,7 @@ namespace MongoLog.Controllers
             var logList = AmonService.Instance.GetAmons(source, startDate, endDate);
             var logContext = new LogContext();
             if (String.IsNullOrEmpty(startDate))
-                startDate = DateTime.Now.AddDays(-10).ToString();
+                startDate = DateTime.Now.AddDays(-365).ToString();
             if (String.IsNullOrEmpty(endDate))
                 endDate = DateTime.Now.ToString();
             Expression<Func<Workflow, bool>> filter = x => true;

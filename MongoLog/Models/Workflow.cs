@@ -35,10 +35,20 @@ namespace MongoLog.Models
             this.UpdatedAt = timeNow;
         }
 
-        
+
         public bool PayloadContains(string value)
         {
             return this.Payload.ContainsValue(value);
+        }
+
+        public string UpdatedAtUi(int seconds)
+        {
+            return HttpContext.Current.Server.UrlEncode(this.UpdatedAt.AddSeconds(seconds).ToLocalTime().ToString());
+        }
+
+        public string SourceLower()
+        {
+            return this.Source.ToLower();
         }
     }
 }
