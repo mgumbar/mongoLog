@@ -73,7 +73,6 @@ namespace MongoLog.Services
         public List<BsonDocument> GetAmons(string origin, string startTime, string endTime)
         {
             // CHECK EVENT DATETIME IN MONGO DB
-            var dteFmt = "yyyy-MM-dd HH:mm:ss";
             var client = new MongoClient(this.connectionString);
             var database = client.GetDatabase("amon");
             var collection = database.GetCollection<BsonDocument>("worklow");

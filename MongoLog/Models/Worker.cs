@@ -34,8 +34,6 @@ namespace MongoLog.Models
         [BsonElement("exception")]
         public string Exception { get; set; }
 
-        string filePath = @"c:/test.txt";
-
         public virtual void StartProcessing(LoggerService logger, CancellationToken cancellationToken = default(CancellationToken))
         {
             throw new NotImplementedException();

@@ -16,21 +16,22 @@ namespace MongoLog.Services
         public DateTime StartDate { get; set; }
         public string ClientKey { get; set; }
 
-        public async void StartFileProcessing()
+        public void StartFileProcessing()
         {
             if (FilePath.ToLower().Contains("fundlook"))
             {
                 StartFileProcessing();
             }
             else if (FilePath.ToLower().Contains("activemonitoring.log")
-                     || FilePath.ToLower().Contains("businessrulelibrary.log"))
+                     || FilePath.ToLower().Contains("businessrulelibrary.log")
+                     || FilePath.ToLower().Contains("dissemination.log"))
             {
                 StartCrGenericAProcessing();
             }
             else if (FilePath.ToLower().Contains("documentgeneration.log")
                      || FilePath.ToLower().Contains("livingdocumentdata.log")
                      || FilePath.ToLower().Contains("livingdocumentservice.log")
-                     || FilePath.ToLower().Contains("serice.log")
+                     || FilePath.ToLower().Contains("service.log")
                      || FilePath.ToLower().Contains("workflow.log"))
             {
                 StartCrGenericBProcessing();
@@ -227,6 +228,7 @@ namespace MongoLog.Services
             }
             if (progress >= 100)
             {
+
                 WorkerService.Instance.UpdateProgress(ClientKey, 100);
                 WorkerService.Instance.UpdateStatus(ClientKey, "success");
                 WorkerService.Instance.UpdateException(ClientKey, "Successfully imported");
