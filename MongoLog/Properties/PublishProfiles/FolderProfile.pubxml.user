@@ -84,7 +84,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/12/2018 06:34:54</publishTime>
     </File>
     <File Include="bin/MongoLog.dll">
-      <publishTime>02/13/2018 06:27:58</publishTime>
+      <publishTime>02/15/2018 07:09:59</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>02/12/2018 06:34:54</publishTime>
@@ -495,7 +495,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/12/2018 06:34:51</publishTime>
     </File>
     <File Include="Scripts/mongoLog.js">
-      <publishTime>02/12/2018 06:38:05</publishTime>
+      <publishTime>02/15/2018 06:32:22</publishTime>
     </File>
     <File Include="Scripts/npm.js">
       <publishTime>02/12/2018 06:37:09</publishTime>
@@ -522,7 +522,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/12/2018 06:34:51</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>02/12/2018 06:37:09</publishTime>
+      <publishTime>02/15/2018 06:30:02</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/12/2018 06:34:51</publishTime>
@@ -534,7 +534,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/12/2018 06:34:52</publishTime>
     </File>
     <File Include="Views/Worker/Index.cshtml">
-      <publishTime>02/12/2018 17:53:53</publishTime>
+      <publishTime>02/14/2018 23:36:09</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>02/12/2018 06:34:52</publishTime>
