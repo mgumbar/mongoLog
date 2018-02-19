@@ -2,6 +2,5 @@ MongoLog.Tests/bin/
 MongoLog.Tests/obj/Debug/
 MongoLog/bin/
 MongoLog/obj/Debug/
-.vs/MongoLog/
-vs/
+.vs/
 MongoLog/obj/Release/
