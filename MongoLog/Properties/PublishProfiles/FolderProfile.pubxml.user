@@ -27,7 +27,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:04:36</publishTime>
     </File>
     <File Include="bin/fr/System.Web.Http.resources.dll">
-      <publishTime>01/28/2015 04:03:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/fr/System.Web.Http.WebHost.resources.dll">
       <publishTime>01/28/2015 04:03:52</publishTime>
@@ -36,7 +36,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:02:26</publishTime>
     </File>
     <File Include="bin/fr/System.Web.Optimization.resources.dll">
-      <publishTime>02/11/2014 15:28:42</publishTime>
+      <publishTime>11/02/2014 15:28:42</publishTime>
     </File>
     <File Include="bin/fr/System.Web.Razor.resources.dll">
       <publishTime>01/28/2015 04:02:36</publishTime>
@@ -87,10 +87,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 18:47:04</publishTime>
     </File>
     <File Include="bin/MongoLog.dll">
-      <publishTime>02/19/2018 22:01:04</publishTime>
+      <publishTime>02/22/2018 22:13:58</publishTime>
     </File>
     <File Include="bin/MongoLog.pdb">
-      <publishTime>02/19/2018 22:01:04</publishTime>
+      <publishTime>02/22/2018 22:13:58</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>02/09/2018 18:47:04</publishTime>
@@ -473,6 +473,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>02/09/2018 20:33:58</publishTime>
     </File>
+    <File Include="Scripts/Chart.js">
+      <publishTime>02/22/2018 21:07:29</publishTime>
+    </File>
     <File Include="Scripts/jquery-1.11.0.js">
       <publishTime>02/09/2018 20:33:58</publishTime>
     </File>
@@ -501,7 +504,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 20:32:54</publishTime>
     </File>
     <File Include="Scripts/mongoLog.js">
-      <publishTime>02/19/2018 20:37:50</publishTime>
+      <publishTime>02/22/2018 22:42:52</publishTime>
     </File>
     <File Include="Scripts/npm.js">
       <publishTime>02/09/2018 20:33:58</publishTime>
@@ -528,13 +531,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 20:32:54</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>02/19/2018 20:37:50</publishTime>
+      <publishTime>02/22/2018 22:32:13</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/09/2018 20:32:54</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/10/2018 15:46:26</publishTime>
+      <publishTime>02/22/2018 20:56:57</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>02/09/2018 20:32:54</publishTime>
@@ -546,7 +549,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 20:32:54</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/19/2018 22:08:43</publishTime>
+      <publishTime>02/22/2018 22:43:28</publishTime>
     </File>
   </ItemGroup>
 </Project>

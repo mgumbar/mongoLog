@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using System.Globalization;
 using System.Security.Claims;
 using System.Web;
+using MongoDB.Bson.Serialization;
 
 namespace MongoLog.Services
 {
@@ -78,11 +79,41 @@ namespace MongoLog.Services
             return result;
         }
 
-        public List<BsonDocument> GetLogsJson(string host, string time, string date, string data, string logName)
+        public List<Log> GetLogsJson(string applicationName, DateTime starDate, DateTime endDate, string data, string logName)
         {
             var client = new MongoClient(this.connectionString);
             var database = client.GetDatabase("log");
-            var collection = database.GetCollection<BsonDocument>("coreact");
+            var collection = database.GetCollection<BsonDocument>("log");
+            var applicationNameQuery = String.IsNullOrEmpty(applicationName) ? String.Format("application_name: {{ $ne:null }}") : String.Format("application_name: '{0}'", applicationName);
+            var dataQuery = String.IsNullOrEmpty(data) ? String.Format("data: {{ $ne:null }}") : String.Format("data: RegExp('{0}')", data);
+            var logNameQuery = String.IsNullOrEmpty(logName) ? String.Format("logname: {{ $ne:null }}") : String.Format("logname: '{0}'", logName);
+            var filter = String.Format(@"{{{0}, 
+                                           date_time: {{$gte: ISODate('{1}'), $lte: ISODate('{2}')}},
+                                           {3},
+                                           {4}
+                                         }}",
+                                         applicationNameQuery, 
+                                         starDate.AddHours(-2).ToString("yyyy-MM-ddTHH:mm:ssZ"), 
+                                         endDate.AddHours(-2).ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                                         dataQuery,
+                                         logNameQuery);
+
+            //& builder.Eq("logname", logName);
+            var documentArray = collection.Find(filter).Limit(500).ToList();
+            var result = new List<Log>();
+            foreach (var document in documentArray)
+            {
+                var log = BsonSerializer.Deserialize<Log>(document);
+                result.Add(log);
+            }
+            return result;
+        }
+
+        public List<BsonDocument> GetLogsJsonV1(string host, string time, string date, string data, string logName)
+        {
+            var client = new MongoClient(this.connectionString);
+            var database = client.GetDatabase("log");
+            var collection = database.GetCollection<BsonDocument>("log");
 
             var filter = @"{$and : [" +
                             "{ $and : [ {name: 'coreact'} ] }," +
@@ -90,7 +121,7 @@ namespace MongoLog.Services
                             "{ $and: [ { date: { $regex: '/.*" + date + ".*/', $options: '-i' } } ] }," +
                             "{ $and: [ { data: { $regex: '/.*" + data + ".*/', $options: '-i' } } ] }," +
                             "{ $and: [ { logname: '" + logName + "' } ] }]}"; //", "coreact", time, date, data, logName
-                       
+
             //& builder.Eq("logname", logName);
             var sort = Builders<BsonDocument>.Sort.Ascending("line");
             var result = collection.Find(filter).Limit(500).Sort(sort).ToList();

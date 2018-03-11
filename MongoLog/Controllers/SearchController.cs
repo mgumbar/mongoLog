@@ -18,6 +18,16 @@ namespace MongoLog.Controllers
         // GET: Search
         public async Task<ActionResult> Index(string application = "", string startDate = "", string endDate = "", string data = "", string logName = "")
         {
+            if (String.IsNullOrEmpty(startDate))
+                startDate = DateTime.Now.AddDays(-365).ToString();
+            if (String.IsNullOrEmpty(endDate))
+                endDate = DateTime.Now.ToString();
+            var logList = LogService.Instance.GetLogsJson(application, DateTime.Parse(startDate), DateTime.Parse(endDate), data, logName);
+            return View(logList);
+        }
+
+        public async Task<ActionResult> IndexV1(string application = "", string startDate = "", string endDate = "", string data = "", string logName = "")
+        {
             //var logList = LogService.Instance.GetLogsAsync(application, time, date, data, logName);
             int limit = 2000;
             if (string.IsNullOrEmpty(application)
@@ -46,7 +56,6 @@ namespace MongoLog.Controllers
             var logListed = logs.OrderBy(p => p.DateTime).ToList();
             return View(logListed);
         }
-
         // GET: Search/Details/5
         public ActionResult Details(int id)
         {
