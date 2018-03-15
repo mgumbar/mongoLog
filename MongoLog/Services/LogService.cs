@@ -84,9 +84,11 @@ namespace MongoLog.Services
             var client = new MongoClient(this.connectionString);
             var database = client.GetDatabase("log");
             var collection = database.GetCollection<BsonDocument>("log");
+            if (applicationName.ToLower() == "global")
+                applicationName = null;
             var applicationNameQuery = String.IsNullOrEmpty(applicationName) ? String.Format("application_name: {{ $ne:null }}") : String.Format("application_name: '{0}'", applicationName);
             var dataQuery = String.IsNullOrEmpty(data) ? String.Format("data: {{ $ne:null }}") : String.Format("data: RegExp('{0}')", data);
-            var logNameQuery = String.IsNullOrEmpty(logName) ? String.Format("logname: {{ $ne:null }}") : String.Format("logname: '{0}'", logName);
+            var logNameQuery = String.IsNullOrEmpty(logName) ? String.Format("logname: {{ $ne:null }}") : String.Format("logname: '{0}", logName);
             var filter = String.Format(@"{{{0}, 
                                            date_time: {{$gte: ISODate('{1}'), $lte: ISODate('{2}')}},
                                            {3},
