@@ -27,7 +27,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:04:36</publishTime>
     </File>
     <File Include="bin/fr/System.Web.Http.resources.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>01/28/2015 04:03:00</publishTime>
     </File>
     <File Include="bin/fr/System.Web.Http.WebHost.resources.dll">
       <publishTime>01/28/2015 04:03:52</publishTime>
@@ -87,10 +87,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 18:47:04</publishTime>
     </File>
     <File Include="bin/MongoLog.dll">
-      <publishTime>02/22/2018 22:13:58</publishTime>
+      <publishTime>03/15/2018 22:56:39</publishTime>
     </File>
     <File Include="bin/MongoLog.pdb">
-      <publishTime>02/22/2018 22:13:58</publishTime>
+      <publishTime>03/15/2018 22:56:39</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>02/09/2018 18:47:04</publishTime>
@@ -408,7 +408,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 20:35:30</publishTime>
     </File>
     <File Include="Content/mongoLog.css">
-      <publishTime>02/09/2018 23:58:12</publishTime>
+      <publishTime>03/11/2018 21:08:45</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>02/09/2018 20:32:54</publishTime>
@@ -504,7 +504,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 20:32:54</publishTime>
     </File>
     <File Include="Scripts/mongoLog.js">
-      <publishTime>02/22/2018 22:42:52</publishTime>
+      <publishTime>03/11/2018 21:04:39</publishTime>
     </File>
     <File Include="Scripts/npm.js">
       <publishTime>02/09/2018 20:33:58</publishTime>
@@ -531,7 +531,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2018 20:32:54</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>02/22/2018 22:32:13</publishTime>
+      <publishTime>03/11/2018 20:36:48</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/09/2018 20:32:54</publishTime>

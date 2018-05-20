@@ -2,8 +2,9 @@
     background-color: #F4D03F
 }
 
-.highlightBlue {
-    background-color: #3BAFDA
+.highlightRed {
+    background-color: #843534;
+    color: white;
 }
 
 .highlightGreen {
